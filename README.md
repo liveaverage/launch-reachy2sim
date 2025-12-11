@@ -1,83 +1,202 @@
-# Reachy 2 Simulation Launcher
+<h1 align="center">🤖 Reachy 2 Simulation Launcher</h1>
 
-One-click deployment of [Pollen Robotics' Reachy 2](https://www.pollen-robotics.com/reachy/) humanoid robot simulation on GPU-enabled Linux hosts (Brev, cloud VMs, or local workstations).
+<p align="center">
+  <strong>One-click deployment of Pollen Robotics' Reachy 2 humanoid robot simulation</strong>
+</p>
 
----
-
-## Purpose
-
-Automates the complete setup and launch of a containerized Reachy 2 simulation environment, including:
-- Docker engine installation
-- NVIDIA GPU passthrough configuration
-- Web-accessible 3D simulator (VNC)
-- Jupyter Lab for Python development
-- gRPC SDK server for programmatic robot control
+<p align="center">
+  <a href="https://www.pollen-robotics.com/reachy/"><img src="https://img.shields.io/badge/Robot-Reachy%202-00d4aa?style=for-the-badge&logo=probot&logoColor=white" alt="Reachy 2"/></a>
+  <a href="https://docs.docker.com/"><img src="https://img.shields.io/badge/Docker-Required-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/></a>
+  <a href="https://developer.nvidia.com/cuda-toolkit"><img src="https://img.shields.io/badge/NVIDIA-GPU%20Required-76B900?style=for-the-badge&logo=nvidia&logoColor=white" alt="NVIDIA GPU"/></a>
+  <a href="https://www.ros.org/"><img src="https://img.shields.io/badge/ROS%202-Humble-22314E?style=for-the-badge&logo=ros&logoColor=white" alt="ROS 2"/></a>
+</p>
 
 ---
 
-## Prerequisites
+## 🚀 Deploy Instantly with Brev
+
+<p align="center">
+  <em>Skip the setup—launch a fully configured Reachy 2 simulation environment in seconds</em>
+</p>
+
+<table align="center">
+<thead>
+<tr>
+<th align="center">GPU</th>
+<th align="center">VRAM</th>
+<th align="center">Best For</th>
+<th align="center">Deploy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong>🟢 NVIDIA L4</strong></td>
+<td align="center">24 GB</td>
+<td align="center">Development & Testing</td>
+<td align="center"><a href="https://brev.nvidia.com/launchable/deploy?launchableID=env-34l7DWjH63aD4qwEgqRiaLeGDRb"><img src="https://brev-assets.s3.us-west-1.amazonaws.com/nv-lb-dark.svg" alt="Deploy on Brev" height="40"/></a></td>
+</tr>
+<tr>
+<td align="center"><strong>🔵 NVIDIA L40S</strong></td>
+<td align="center">48 GB</td>
+<td align="center">Heavy Simulation & Training</td>
+<td align="center"><a href="https://brev.nvidia.com/launchable/deploy?launchableID=env-34l9Circ6ce2XTXfIB4eFvcaycU"><img src="https://brev-assets.s3.us-west-1.amazonaws.com/nv-lb-dark.svg" alt="Deploy on Brev" height="40"/></a></td>
+</tr>
+</tbody>
+</table>
+
+<p align="center">
+  <sub>☝️ Click a deploy button above to launch on <a href="https://brev.nvidia.com">Brev</a> — GPU cloud for AI developers</sub>
+</p>
+
+---
+
+<p align="center">
+  <a href="#-quick-start">Quick Start</a> •
+  <a href="#-features">Features</a> •
+  <a href="#-architecture">Architecture</a> •
+  <a href="#%EF%B8%8F-configuration">Configuration</a> •
+  <a href="#-sdk-examples">SDK Examples</a> •
+  <a href="#-troubleshooting">Troubleshooting</a>
+</p>
+
+---
+
+## ✨ Features
+
+<table>
+<tr>
+<td width="50%">
+
+### 🖥️ Web-Based VNC
+Access the full 3D simulation through your browser—no X11 forwarding or local GPU required on your client machine.
+
+### 🐍 Jupyter Lab
+Pre-configured Python environment with Reachy SDK for rapid prototyping and experimentation.
+
+</td>
+<td width="50%">
+
+### ⚡ GPU Accelerated
+Full NVIDIA GPU passthrough for real-time physics simulation with Gazebo or MuJoCo.
+
+### 📡 gRPC SDK Server
+Programmatic control of the robot via the official Pollen Robotics SDK.
+
+</td>
+</tr>
+</table>
+
+---
+
+## 📋 Prerequisites
 
 | Requirement | Details |
-|-------------|---------|
+|:------------|:--------|
 | **OS** | Ubuntu 22.04+ / Debian-based Linux |
-| **GPU** | NVIDIA GPU with drivers installed (`nvidia-smi` should work) |
-| **Network** | Internet access to pull Docker images (~5-10GB) |
-| **Privileges** | `sudo` access for Docker/toolkit installation |
+| **GPU** | NVIDIA GPU with drivers installed |
+| **Verification** | `nvidia-smi` should display GPU info |
+| **Network** | Internet access for Docker image (~5-10GB) |
+| **Privileges** | `sudo` access required |
 
-> **Note:** The scripts assume NVIDIA drivers are already installed on the host. If `nvidia-smi` fails, install drivers first.
+> [!IMPORTANT]
+> The scripts assume NVIDIA drivers are already installed. If `nvidia-smi` fails, [install NVIDIA drivers](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/) first.
 
 ---
 
-## Quick Start
+## 🚀 Quick Start
 
 ```bash
-# Clone this repo
+# Clone and run - that's it!
 git clone https://github.com/liveaverage/launch-reachy2sim.git
 cd launch-reachy2sim
-
-# Run the installer (handles everything)
 ./install.sh
 ```
 
-That's it. After a few minutes, access the simulation:
+After a few minutes, access your simulation:
 
-| Service | URL | Description |
-|---------|-----|-------------|
-| **3D Simulator** | http://localhost:6080/vnc.html | noVNC web interface to RViz/Gazebo |
-| **Jupyter Lab** | http://localhost:8888 | Python notebooks for SDK development |
-| **SDK (gRPC)** | `localhost:50051` | Programmatic control via Reachy SDK |
+<table>
+<tr>
+<th>🖥️ 3D Simulator</th>
+<th>📓 Jupyter Lab</th>
+<th>📡 SDK Server</th>
+</tr>
+<tr>
+<td align="center">
+
+**http://localhost:6080/vnc.html**
+
+VNC web interface to<br/>RViz & Gazebo
+
+</td>
+<td align="center">
+
+**http://localhost:8888**
+
+Python notebooks for<br/>SDK development
+
+</td>
+<td align="center">
+
+**localhost:50051**
+
+gRPC endpoint for<br/>programmatic control
+
+</td>
+</tr>
+</table>
 
 ---
 
-## Architecture
+## 🏗️ Architecture
 
 ```
-install.sh                    # Entry point - orchestrates setup
-├── Clones/pulls automation repo
-├── scripts/setup_env.sh      # Host environment setup
-│   ├── Installs Docker (get.docker.com)
-│   ├── Installs NVIDIA Container Toolkit
-│   ├── Configures Docker → NVIDIA runtime
-│   └── Adds user to 'docker' group
-└── scripts/start_reachy.sh   # Launches simulation container
-    ├── Pulls pollenrobotics/reachy2:latest
-    ├── Runs with GPU passthrough
-    └── Exposes ports 6080, 8888, 50051
+┌─────────────────────────────────────────────────────────────────────┐
+│                         install.sh                                  │
+│                    (Entry Point Script)                             │
+└──────────────────────────┬──────────────────────────────────────────┘
+                           │
+           ┌───────────────┴───────────────┐
+           ▼                               ▼
+┌──────────────────────┐       ┌──────────────────────┐
+│   setup_env.sh       │       │   start_reachy.sh    │
+│  ─────────────────   │       │  ─────────────────   │
+│  • Install Docker    │       │  • Pull Docker image │
+│  • NVIDIA Toolkit    │       │  • Configure GPU     │
+│  • User permissions  │       │  • Expose ports      │
+└──────────────────────┘       └──────────┬───────────┘
+                                          │
+                                          ▼
+                        ┌─────────────────────────────────┐
+                        │  pollenrobotics/reachy2:latest  │
+                        │  ─────────────────────────────  │
+                        │                                 │
+                        │   ┌─────────┐  ┌───────────┐   │
+                        │   │  RViz   │  │  Gazebo/  │   │
+                        │   │         │  │  MuJoCo   │   │
+                        │   └─────────┘  └───────────┘   │
+                        │                                 │
+                        │   ┌─────────┐  ┌───────────┐   │
+                        │   │ Jupyter │  │    SDK    │   │
+                        │   │   Lab   │  │  Server   │   │
+                        │   └─────────┘  └───────────┘   │
+                        │                                 │
+                        │    :6080       :8888    :50051  │
+                        └─────────────────────────────────┘
 ```
 
-### Docker Container Details
+### Docker Container Configuration
 
 | Setting | Value | Purpose |
-|---------|-------|---------|
-| Image | `pollenrobotics/reachy2:latest` | Official Pollen Robotics image |
-| Container Name | `reachy2_sim` | For easy management |
-| Restart Policy | `unless-stopped` | Auto-recovery on failure |
-| Shared Memory | `2GB` | Required for physics simulation |
-| GPU Access | `--gpus all` | Full GPU passthrough |
+|:--------|:------|:--------|
+| **Image** | `pollenrobotics/reachy2:latest` | Official Pollen Robotics image |
+| **Container** | `reachy2_sim` | Easy identification |
+| **Restart** | `unless-stopped` | Auto-recovery on failure |
+| **Shared Memory** | `2GB` | Physics simulation buffer |
+| **GPU** | `--gpus all` | Full GPU passthrough |
 
 ---
 
-## Configuration
+## ⚙️ Configuration
 
 ### Simulation Mode
 
@@ -87,193 +206,250 @@ Edit `scripts/start_reachy.sh` to switch physics engines:
 # Default: Gazebo simulation
 SIM_MODE="gazebo"
 
-# Alternative: MuJoCo physics (faster, different trade-offs)
+# Alternative: MuJoCo physics (faster, different dynamics)
 SIM_MODE="mujoco"
 ```
 
-**Mode comparison:**
+<table>
+<tr>
+<th>Mode</th>
+<th>Physics Engine</th>
+<th>Best For</th>
+</tr>
+<tr>
+<td><code>gazebo</code></td>
+<td>Gazebo Classic</td>
+<td>Full ROS 2 integration, sensor simulation, visualization</td>
+</tr>
+<tr>
+<td><code>mujoco</code></td>
+<td>MuJoCo</td>
+<td>Faster physics, contact-rich manipulation, RL training</td>
+</tr>
+</table>
 
-| Mode | Physics Engine | Use Case |
-|------|---------------|----------|
-| `gazebo` | Gazebo Classic | Full ROS 2 integration, sensor simulation |
-| `mujoco` | MuJoCo | Faster physics, contact-rich manipulation |
+### Port Configuration
 
-### Port Mappings
-
-Default ports can be changed in `scripts/start_reachy.sh`:
+Default ports in `scripts/start_reachy.sh`:
 
 ```bash
-docker run -d \
-    -p 6080:6080 \   # VNC web interface
-    -p 8888:8888 \   # Jupyter Lab
-    -p 50051:50051 \ # SDK gRPC server
-    ...
+-p 6080:6080 \   # 🖥️  VNC web interface
+-p 8888:8888 \   # 📓 Jupyter Lab
+-p 50051:50051   # 📡 SDK gRPC server
 ```
 
-### Launch Flags
-
-The simulation is started with these ROS 2 launch arguments:
+### Launch Arguments
 
 | Flag | Default | Description |
-|------|---------|-------------|
+|:-----|:--------|:------------|
 | `start_rviz` | `true` | Launch RViz visualization |
 | `start_sdk_server` | `true` | Enable gRPC SDK server |
-| `fake` | `true` | Use simulated hardware |
-| `gazebo` | `true/false` | Enable Gazebo simulation |
-| `mujoco` | `false/true` | Enable MuJoCo simulation |
+| `fake` | `true` | Use simulated (not real) hardware |
+| `gazebo` | `true`/`false` | Enable Gazebo simulation |
+| `mujoco` | `false`/`true` | Enable MuJoCo simulation |
 
 ---
 
-## Usage
+## 🐍 SDK Examples
 
-### Managing the Container
-
-```bash
-# Check status
-docker ps -a | grep reachy2_sim
-
-# View logs
-docker logs -f reachy2_sim
-
-# Stop simulation
-docker stop reachy2_sim
-
-# Restart simulation
-docker start reachy2_sim
-
-# Remove and relaunch
-docker rm -f reachy2_sim
-./scripts/start_reachy.sh
-```
-
-### Accessing the Simulation
-
-**Web VNC (http://localhost:6080/vnc.html):**
-- No password by default
-- Shows RViz with Reachy 2 robot model
-- Gazebo/MuJoCo physics visualization
-
-**Jupyter Lab (http://localhost:8888):**
-- Pre-configured with Reachy SDK
-- Example notebooks may be available in `/notebooks`
-
-**SDK Connection (Python):**
+### Connect to the Simulation
 
 ```python
 from reachy_sdk import ReachySDK
 
 # Connect to the simulated robot
 reachy = ReachySDK(host="localhost", port=50051)
+```
 
-# Move the right arm
+### Move the Robot Arm
+
+```python
+# Move right arm shoulder
 reachy.r_arm.r_shoulder_pitch.goal_position = -30
+
+# Coordinated arm movement
+reachy.r_arm.goto(
+    goal_positions=[0, -45, 0, -90, 0, 45, 0],
+    duration=2.0,
+    wait=True
+)
+```
+
+### Access Camera Feeds
+
+```python
+from reachy_sdk.media import CameraView
+
+# Get image from the left teleop camera
+left_image, timestamp = reachy.cameras.teleop.get_frame(CameraView.LEFT)
+
+# Display with OpenCV
+import cv2
+cv2.imshow('Reachy Vision', left_image)
+cv2.waitKey(0)
+```
+
+> 📚 **Full SDK Documentation:** [docs.pollen-robotics.com](https://docs.pollen-robotics.com/developing-with-reachy-2/)
+
+---
+
+## 🔧 Container Management
+
+```bash
+# Check container status
+docker ps -a | grep reachy2_sim
+
+# View live logs
+docker logs -f reachy2_sim
+
+# Stop the simulation
+docker stop reachy2_sim
+
+# Restart the simulation
+docker start reachy2_sim
+
+# Full restart (remove and relaunch)
+docker rm -f reachy2_sim
+./scripts/start_reachy.sh
 ```
 
 ---
 
-## Troubleshooting
+## 🔥 Troubleshooting
 
-### Docker permission denied
+<details>
+<summary><strong>❌ Docker permission denied</strong></summary>
 
 ```bash
-# If you see "permission denied" errors after install:
-# Option 1: Log out and back in (recommended)
+# Option 1: Log out and back in (recommended after first install)
 logout
 
 # Option 2: Force group reload (install.sh does this automatically)
 sg docker -c "./scripts/start_reachy.sh"
 ```
 
-### GPU not detected
+</details>
+
+<details>
+<summary><strong>❌ GPU not detected in container</strong></summary>
 
 ```bash
-# Verify NVIDIA driver is working on host
+# Verify host GPU works
 nvidia-smi
 
-# Verify NVIDIA Container Toolkit
+# Test NVIDIA Container Toolkit
 docker run --rm --gpus all nvidia/cuda:12.0-base nvidia-smi
 
-# If toolkit issues, reinstall:
+# Reconfigure if needed
 sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
 ```
 
-### Container exits immediately
+</details>
+
+<details>
+<summary><strong>❌ Container exits immediately</strong></summary>
 
 ```bash
-# Check container logs for errors
+# Check logs for error details
 docker logs reachy2_sim
 
-# Common issues:
-# - Insufficient shared memory: increase --shm-size
-# - GPU memory exhausted: close other GPU applications
-# - Port already in use: change port mappings
+# Common causes:
+# • Insufficient shared memory → increase --shm-size
+# • GPU memory exhausted → close other GPU applications
+# • Port already in use → change port mappings
 ```
 
-### VNC page loads but shows nothing
+</details>
 
-```bash
-# Wait 30-60 seconds for RViz/Gazebo to initialize
-# Check if container is still running:
-docker ps | grep reachy2_sim
+<details>
+<summary><strong>❌ VNC page loads but shows nothing</strong></summary>
 
-# If container exited, check logs and restart
-docker logs reachy2_sim
-./scripts/start_reachy.sh
-```
+- Wait 30-60 seconds for RViz/Gazebo to initialize
+- Verify container is running: `docker ps | grep reachy2_sim`
+- Check logs: `docker logs reachy2_sim`
 
-### Remote access (non-localhost)
+</details>
+
+<details>
+<summary><strong>🌐 Remote access setup</strong></summary>
 
 ```bash
 # Get host IP
 hostname -I | awk '{print $1}'
 
-# Access from remote machine:
+# Access remotely:
 # http://<HOST_IP>:6080/vnc.html
 # http://<HOST_IP>:8888
 
-# Ensure firewall allows ports 6080, 8888, 50051
+# Open firewall ports
 sudo ufw allow 6080/tcp
 sudo ufw allow 8888/tcp
 sudo ufw allow 50051/tcp
 ```
 
+</details>
+
 ---
 
-## File Reference
+## 📁 File Reference
 
 | File | Purpose |
-|------|---------|
-| `install.sh` | Main entry point; clones repo, runs setup, launches sim |
-| `scripts/setup_env.sh` | Installs Docker + NVIDIA Container Toolkit |
-| `scripts/start_reachy.sh` | Launches Reachy 2 Docker container |
+|:-----|:--------|
+| `install.sh` | 🚀 Entry point—clones repo, runs setup, launches simulation |
+| `scripts/setup_env.sh` | 🔧 Installs Docker + NVIDIA Container Toolkit |
+| `scripts/start_reachy.sh` | 🤖 Launches Reachy 2 Docker container |
 
 ---
 
-## Dependencies
+## 📦 Dependencies
 
-**Installed by scripts:**
-- Docker Engine (via [get.docker.com](https://get.docker.com))
+**Installed automatically:**
+- Docker Engine via [get.docker.com](https://get.docker.com)
 - NVIDIA Container Toolkit
 
-**Required on host (pre-existing):**
+**Required on host:**
 - NVIDIA GPU drivers
 - `curl`, `sudo`, `git`
 
-**Docker image pulled:**
+**Docker image:**
 - `pollenrobotics/reachy2:latest` (~5-10GB)
 
 ---
 
-## References
+## 🔗 References
 
-- [Pollen Robotics - Reachy 2](https://www.pollen-robotics.com/reachy/)
-- [Reachy SDK Documentation](https://docs.pollen-robotics.com/)
-- [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/)
-- [Source Repository](https://github.com/liveaverage/launch-reachy2sim)
+<table>
+<tr>
+<td align="center">
+<a href="https://www.pollen-robotics.com/reachy/">
+<img src="https://img.shields.io/badge/Pollen%20Robotics-Reachy%202-00d4aa?style=flat-square" alt="Pollen Robotics"/>
+</a>
+<br/><sub>Official Website</sub>
+</td>
+<td align="center">
+<a href="https://docs.pollen-robotics.com/">
+<img src="https://img.shields.io/badge/Reachy%202-Documentation-blue?style=flat-square" alt="Documentation"/>
+</a>
+<br/><sub>SDK Docs</sub>
+</td>
+<td align="center">
+<a href="https://github.com/pollen-robotics">
+<img src="https://img.shields.io/badge/GitHub-pollen--robotics-181717?style=flat-square&logo=github" alt="GitHub"/>
+</a>
+<br/><sub>Source Code</sub>
+</td>
+<td align="center">
+<a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/">
+<img src="https://img.shields.io/badge/NVIDIA-Container%20Toolkit-76B900?style=flat-square&logo=nvidia" alt="NVIDIA"/>
+</a>
+<br/><sub>GPU Runtime</sub>
+</td>
+</tr>
+</table>
 
 ---
 
-## License
-
-See upstream [Pollen Robotics licensing](https://github.com/pollen-robotics) for Reachy 2 software components.
+<p align="center">
+  <sub>See upstream <a href="https://github.com/pollen-robotics">Pollen Robotics licensing</a> for Reachy 2 software components.</sub>
+</p>
