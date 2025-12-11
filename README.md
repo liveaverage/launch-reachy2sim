@@ -30,16 +30,10 @@
 </thead>
 <tbody>
 <tr>
-<td align="center"><strong>🟢 NVIDIA L4</strong></td>
-<td align="center">24 GB</td>
-<td align="center">Development & Testing</td>
-<td align="center"><a href="https://brev.nvidia.com/launchable/deploy?launchableID=env-34l7DWjH63aD4qwEgqRiaLeGDRb"><img src="https://brev-assets.s3.us-west-1.amazonaws.com/nv-lb-dark.svg" alt="Deploy on Brev" height="40"/></a></td>
-</tr>
-<tr>
 <td align="center"><strong>🔵 NVIDIA L40S</strong></td>
 <td align="center">48 GB</td>
 <td align="center">Heavy Simulation & Training</td>
-<td align="center"><a href="https://brev.nvidia.com/launchable/deploy?launchableID=env-34l9Circ6ce2XTXfIB4eFvcaycU"><img src="https://brev-assets.s3.us-west-1.amazonaws.com/nv-lb-dark.svg" alt="Deploy on Brev" height="40"/></a></td>
+<td align="center"><a href="https://brev.nvidia.com/launchable/deploy?launchableID=env-36ihk4SZip9LQocx5jR6c6srggd"><img src="https://brev-assets.s3.us-west-1.amazonaws.com/nv-lb-dark.svg" alt="Deploy on Brev" height="40"/></a></td>
 </tr>
 </tbody>
 </table>
