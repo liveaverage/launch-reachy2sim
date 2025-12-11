@@ -38,7 +38,7 @@ docker run -d \
     -p 8888:8888 \
     -p 50051:50051 \
     -e NVIDIA_DRIVER_CAPABILITIES=all \
-    $IMAGE_NAME
+    $IMAGE_NAME $CMD_FLAGS
 
 # 4. Success Message
 HOST_IP=$(hostname -I | awk '{print $1}')
