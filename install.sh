@@ -3,6 +3,7 @@ set -e
 
 # --- Configuration ---
 # REPLACE THIS with your actual username and repo name
+# bash <(curl -sL https://raw.githubusercontent.com/liveaverage/launch-reachy2sim/refs/heads/main/install.sh)
 REPO_URL="https://github.com/liveaverage/launch-reachy2sim.git"
 CLONE_DIR="reachy_automation"
 
