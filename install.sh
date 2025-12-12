@@ -2,14 +2,14 @@
 set -e
 
 # --- Configuration ---
-# REPLACE THIS with your actual username and repo name
-# bash <(curl -sL https://raw.githubusercontent.com/liveaverage/launch-reachy2sim/refs/heads/main/install.sh)
+# Usage: bash <(curl -sL https://raw.githubusercontent.com/liveaverage/launch-reachy2sim/refs/heads/main/install.sh)
 REPO_URL="https://github.com/liveaverage/launch-reachy2sim.git"
-CLONE_DIR="reachy_automation"
+CLONE_DIR="/tmp/reachy_automation"
 
 echo ">>> 📦 Cloning Reachy 2 Automation Repo..."
+echo ">>> 📁 Target directory: $CLONE_DIR"
 
-# 1. Clone or Pull
+# 1. Clone or Pull (use /tmp for guaranteed write access)
 if [ -d "$CLONE_DIR" ]; then
     echo ">>> Directory exists. Pulling latest changes..."
     cd "$CLONE_DIR"
@@ -32,8 +32,7 @@ chmod +x setup_env.sh start_reachy.sh
 
 # 4. Run Host Setup (Installs Docker/NVIDIA Drivers)
 echo ">>> 🛠️  Running Host Setup..."
-# We use 'sudo' inside the script, so this runs as current user but prompts if needed
-./setup_env.sh
+sudo ./setup_env.sh
 
 # 5. Run Simulation with "Hot" Group Loading
 echo ">>> 🚀 Launching Simulation..."
